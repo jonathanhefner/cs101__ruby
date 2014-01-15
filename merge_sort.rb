@@ -10,20 +10,14 @@ module MergeSort
   end
   
   def self.merge(ary1, ary2)
-    ary = []
-    i1, i2 = 0, 0
+    return ary1 if ary2.empty?
+    return ary2 if ary1.empty?
     
-    while i1 < ary1.length || i2 < ary2.length
-      if i1 < ary1.length && (i2 >= ary2.length || ary1[i1] <= ary2[i2])
-        ary << ary1[i1]
-        i1 += 1
-      else
-        ary << ary2[i2]
-        i2 += 1
-      end
+    if ary1.first <= ary2.first
+      [ary1.first, *merge(ary1[1..-1], ary2)]
+    else
+      [ary2.first, *merge(ary1, ary2[1..-1])]
     end
-    
-    ary
   end
 
 end

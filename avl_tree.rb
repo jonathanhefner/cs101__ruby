@@ -1,0 +1,100 @@
+class AvlTree < Struct.new(:val, :left, :right)
+
+  def initialize(v)
+    self.val = v
+  end
+  
+  def height
+    [left_height, right_height].max
+  end
+  
+  def left_height
+    left ? (left.height + 1) : 0
+  end
+  
+  def right_height
+    right ? (right.height + 1) : 0
+  end
+  
+  def balance_factor
+    right_height - left_height
+  end
+
+  # NOTE returns the new root/node to replace the current one
+  def insert(new_val)
+    return self if val == new_val # value already exists, abort
+  
+    # insert
+    lr = new_val < val ? :left : :right
+    self[lr] = self[lr] ? self[lr].insert(new_val) : AvlTree.new(new_val)
+
+    # balance
+    if balance_factor < -1 # Left-Left or Left-Right
+      if left.balance_factor > 0 # Left-Right
+        self.left = left.rotate_left
+      end
+      rotate_right
+      
+    elsif balance_factor > 1 # Right-Right or Right-Left
+      if right.balance_factor < 0 # Right-Left
+        self.right = right.rotate_right
+      end
+      rotate_left
+      
+    else
+      self
+    end
+  end
+  
+  # NOTE returns the new root/node to replace the current one
+  def rotate_left
+    n = self.right
+    self.right = n.left
+    n.left = self
+    n
+  end
+  
+  # NOTE insert returns the new root/node to replace the current one
+  def rotate_right
+    n = self.left
+    self.left = n.right
+    n.right = self
+    n
+  end
+  
+  def pre_order(acc=[])
+    acc << val
+    left.pre_order(acc) if left
+    right.pre_order(acc) if right
+    acc
+  end
+    
+  def in_order(acc=[])
+    left.in_order(acc) if left
+    acc << val
+    right.in_order(acc) if right
+    acc
+  end
+  
+  def post_order(acc=[])
+    left.post_order(acc) if left
+    right.post_order(acc) if right
+    acc << val
+    acc
+  end
+  
+  def self.breadth_first(root)
+    acc = []
+    queue = [root]
+    
+    while queue.any?
+      n = queue.shift
+      acc << n.val
+      queue.push(n.left) if n.left
+      queue.push(n.right) if n.right
+    end
+    
+    acc
+  end
+  
+end

@@ -16,7 +16,7 @@ describe AvlTree do
     #    2   7  17  23
     #   /   / \       \
     #  1   5  11      29
-      
+    
     context 'root' do
       subject { tree }
       its(:val) { should == 13 }
@@ -83,5 +83,72 @@ describe AvlTree do
     its(:right_height) { should == 1 }
     its(:balance_factor) { should == 0 }  
   end
-
+  
+  
+  describe '#delete' do
+    context 'when removing a leaf' do
+      let(:nums) { [5, 3, 7] }
+      #    5
+      #   / \
+      #  3   7
+    
+      subject { tree.delete(7) }
+      its(:height) { should == 1 }
+      its(:left_height) { should == 1 }
+      its(:right_height) { should == 0 }
+      its(:balance_factor) { should == -1 }
+    end
+    
+    context 'when removing single-child node' do
+      let(:nums) { [5, 3, 7, 1, 9] }
+      #      5
+      #     / \
+      #    3   7
+      #   /     \
+      #  1       9
+      
+      subject { tree.delete(1) }
+      its(:height) { should == 2 }
+      its(:left_height) { should == 1 }
+      its(:right_height) { should == 2 }
+      its(:balance_factor) { should == 1 }
+    end
+    
+    context 'when removing two-child node' do
+      let(:nums) { [5, 3, 7, 1, 9, 4] }
+      #      5
+      #     / \
+      #    3   7
+      #   / \   \
+      #  1   4   9
+      
+      subject { tree.delete(5) }
+      its(:val) { should == 4 }
+      its(:height) { should == 2 }
+      its(:left_height) { should == 2 }
+      its(:right_height) { should == 2 }
+      its(:balance_factor) { should == 0 }
+    end
+    
+    context 'when removing a non-existant node' do
+      let(:nums) { [5, 3, 7] }
+      #    5
+      #   / \
+      #  3   7
+    
+      subject { tree.delete(100) }
+      its(:height) { should == 1 }
+      its(:left_height) { should == 1 }
+      its(:right_height) { should == 1 }
+      its(:balance_factor) { should == 0 }
+    end
+    
+    context 'when removing the only node' do
+      let(:nums) { [5] }
+    
+      subject { tree.delete(5) }
+      it { should == nil }
+    end
+  end
+  
 end

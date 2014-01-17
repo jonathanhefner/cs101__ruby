@@ -38,7 +38,7 @@ describe AvlTree do
       end
       
       it 'should yield a correct breadth-first traversal' do
-        described_class.breadth_first(tree).should == [13, 3, 19, 2, 7, 17, 23, 1, 5, 11, 29]
+        tree.breadth_first.should == [13, 3, 19, 2, 7, 17, 23, 1, 5, 11, 29]
       end
     
       context '=> 3 => 2' do

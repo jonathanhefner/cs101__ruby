@@ -114,9 +114,9 @@ class AvlTree < Struct.new(:val, :left, :right)
     acc
   end
   
-  def self.breadth_first(root)
+  def breadth_first
     acc = []
-    queue = [root]
+    queue = [self]
     
     while queue.any?
       n = queue.shift

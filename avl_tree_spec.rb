@@ -20,6 +20,8 @@ describe AvlTree do
     context 'root' do
       subject { tree }
       its(:val) { should == 13 }
+      its(:min) { should == 1 }
+      its(:max) { should == 29 }
       its(:height) { should == 3 }
       its(:left_height) { should == 3 }
       its(:right_height) { should == 3 }
@@ -44,6 +46,8 @@ describe AvlTree do
       context '=> 3 => 2' do
         subject { tree.left.left }
         its(:val) { should == 2 }
+        its(:min) { should == 1 }
+        its(:max) { should == 2 }
         its(:height) { should == 1 }
         its(:left_height) { should == 1 }
         its(:right_height) { should == 0 }
@@ -52,6 +56,8 @@ describe AvlTree do
         context '=> 1' do
           subject { tree.left.left.left }
           its(:val) { should == 1 }
+          its(:min) { should == 1 }
+          its(:max) { should == 1 }
           its(:height) { should == 0 }
           its(:left_height) { should == 0 }
           its(:right_height) { should == 0 }
@@ -62,10 +68,23 @@ describe AvlTree do
       context '=> 19' do
         subject { tree.right }
         its(:val) { should == 19 }
+        its(:min) { should == 17 }
+        its(:max) { should == 29 }
         its(:height) { should == 2 }
         its(:left_height) { should == 1 }
         its(:right_height) { should == 2 }
         its(:balance_factor) { should == 1 }
+        
+        context '=> 23' do
+          subject { tree.right.right }
+          its(:val) { should == 23 }
+          its(:min) { should == 23 }
+          its(:max) { should == 29 }
+          its(:height) { should == 1 }
+          its(:left_height) { should == 0 }
+          its(:right_height) { should == 1 }
+          its(:balance_factor) { should == 1 }
+        end
       end
     end
   end
@@ -93,6 +112,7 @@ describe AvlTree do
       #  3   7
     
       subject { tree.delete(7) }
+      its(:max) { should == 5 }
       its(:height) { should == 1 }
       its(:left_height) { should == 1 }
       its(:right_height) { should == 0 }
@@ -108,6 +128,7 @@ describe AvlTree do
       #  1       9
       
       subject { tree.delete(1) }
+      its(:min) { should == 3 }
       its(:height) { should == 2 }
       its(:left_height) { should == 1 }
       its(:right_height) { should == 2 }

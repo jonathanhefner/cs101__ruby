@@ -21,15 +21,11 @@ class AvlTree < Struct.new(:val, :left, :right)
   end
   
   def min
-    return left.min if left
-    return right.min if right
-    val
+    left ? left.min : val
   end
   
   def max
-    return right.max if right
-    return left.max if left
-    val
+    right ? right.max : val
   end
 
   # NOTE returns the new root/node to replace the current one

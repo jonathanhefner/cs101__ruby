@@ -20,7 +20,7 @@ describe BinaryHeap do
       let(:min_heap) { false }
       
       it 'dequeues the values in the correct order' do
-        take_all.should == nums.sort.reverse
+        expect(take_all).to eq(nums.sort.reverse)
       end
     end
     
@@ -28,7 +28,7 @@ describe BinaryHeap do
       let(:min_heap) { true }
     
       it 'dequeues the values in the correct order' do
-        take_all.should == nums.sort
+        expect(take_all).to eq(nums.sort)
       end
     end
     

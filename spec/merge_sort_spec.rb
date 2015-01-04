@@ -6,54 +6,54 @@ describe MergeSort do
   
   describe '#merge' do
     it 'merges in-order inputs' do
-      MergeSort.merge([1, 2], [3, 4]).should == [1, 2, 3, 4]
+      expect(MergeSort.merge([1, 2], [3, 4])).to eq([1, 2, 3, 4])
     end
     
     it 'merges interleaved inputs' do
-      MergeSort.merge([1, 3], [2, 4]).should == [1, 2, 3, 4]
+      expect(MergeSort.merge([1, 3], [2, 4])).to eq([1, 2, 3, 4])
     end
     
     it 'merges out-of-order inputs' do
-      MergeSort.merge([2, 3], [1, 4]).should == [1, 2, 3, 4]
+      expect(MergeSort.merge([2, 3], [1, 4])).to eq([1, 2, 3, 4])
     end
     
     it 'merges left-heavy inputs' do
-      MergeSort.merge([1, 3, 5], [2, 4]).should == [1, 2, 3, 4, 5]
+      expect(MergeSort.merge([1, 3, 5], [2, 4])).to eq([1, 2, 3, 4, 5])
     end
     
     it 'merges right-heavy inputs' do
-      MergeSort.merge([1, 3], [2, 4, 5]).should == [1, 2, 3, 4, 5]
+      expect(MergeSort.merge([1, 3], [2, 4, 5])).to eq([1, 2, 3, 4, 5])
     end
     
     it 'merges duplicate elements' do
-      MergeSort.merge([1, 3, 5], [2, 3, 4]).should == [1, 2, 3, 3, 4, 5]
+      expect(MergeSort.merge([1, 3, 5], [2, 3, 4])).to eq([1, 2, 3, 3, 4, 5])
     end
   end
 
 
   describe '#sort' do
     it 'sorts an even number of elements' do
-      MergeSort.sort([4, 3, 2, 1]).should == [1, 2, 3, 4]
+      expect(MergeSort.sort([4, 3, 2, 1])).to eq([1, 2, 3, 4])
     end
     
     it 'sorts an odd number of elements' do
-      MergeSort.sort([5, 4, 3, 2, 1]).should == [1, 2, 3, 4, 5]
+      expect(MergeSort.sort([5, 4, 3, 2, 1])).to eq([1, 2, 3, 4, 5])
     end
     
     it 'sorts duplicate elements' do
-      MergeSort.sort([4, 3, 1, 3, 2]).should == [1, 2, 3, 3, 4]
+      expect(MergeSort.sort([4, 3, 1, 3, 2])).to eq([1, 2, 3, 3, 4])
     end
     
     it 'works on an empty list' do
-      MergeSort.sort([]).should == []
+      expect(MergeSort.sort([])).to eq([])
     end
     
     it 'works on a 1-element list' do
-      MergeSort.sort([1]).should == [1]
+      expect(MergeSort.sort([1])).to eq([1])
     end
     
     it 'works on an already sorted array' do
-      MergeSort.sort([1, 2, 3]).should == [1, 2, 3]
+      expect(MergeSort.sort([1, 2, 3])).to eq([1, 2, 3])
     end
   end
   

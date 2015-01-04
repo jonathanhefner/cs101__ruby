@@ -1,6 +1,7 @@
 $:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
 require 'avl_tree'
 require 'rspec'
+require 'rspec/its'
 
 describe AvlTree do
 
@@ -29,19 +30,19 @@ describe AvlTree do
       its(:balance_factor) { should == 0 }
       
       it 'should yield a correct in-order traversal' do
-        tree.in_order.should == nums.sort
+        expect(tree.in_order).to eq(nums.sort)
       end
       
       it 'should yield a correct pre-order traversal' do
-        tree.pre_order.should == [13, 3, 2, 1, 7, 5, 11, 19, 17, 23, 29]
+        expect(tree.pre_order).to eq([13, 3, 2, 1, 7, 5, 11, 19, 17, 23, 29])
       end
       
       it 'should yield a correct post-order traversal' do
-        tree.post_order.should == [1, 2, 5, 11, 7, 3, 17, 29, 23, 19, 13]
+        expect(tree.post_order).to eq([1, 2, 5, 11, 7, 3, 17, 29, 23, 19, 13])
       end
       
       it 'should yield a correct breadth-first traversal' do
-        tree.breadth_first.should == [13, 3, 19, 2, 7, 17, 23, 1, 5, 11, 29]
+        expect(tree.breadth_first).to eq([13, 3, 19, 2, 7, 17, 23, 1, 5, 11, 29])
       end
     
       context '=> 3 => 2' do

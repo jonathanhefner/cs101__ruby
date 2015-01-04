@@ -44,7 +44,7 @@ describe GraphList do
           g: []
         }.each do |start, successors|
           it "yields the correct list for #{start}" do
-            graph.successors(start).should == successors
+            expect(graph.successors(start)).to eq(successors)
           end
         end
       end
@@ -59,7 +59,7 @@ describe GraphList do
           g: [:g]
         }.each do |start, traversal|
           it "yields the correct traversal starting from #{start}" do
-            graph.breadth_first(start).should == traversal
+            expect(graph.breadth_first(start)).to eq(traversal)
           end
         end      
       end
@@ -76,7 +76,7 @@ describe GraphList do
           g: [:g]
         }.each do |start, traversal|
           it "yields the correct traversal starting from #{start}" do
-            graph.depth_first(start).should == traversal
+            expect(graph.depth_first(start)).to eq(traversal)
           end
         end
       end
@@ -96,7 +96,7 @@ describe GraphList do
           g: [:e]
         }.each do |start, successors|
           it "yields the correct list for #{start}" do
-            graph.successors(start).should == successors
+            expect(graph.successors(start)).to eq(successors)
           end
         end
       end
@@ -111,7 +111,7 @@ describe GraphList do
           g: [:g, :e, :b, :c, :a, :f, :d]
         }.each do |start, traversal|
           it "yields the correct traversal starting from #{start}" do
-            graph.breadth_first(start).should == traversal
+            expect(graph.breadth_first(start)).to eq(traversal)
           end
         end      
       end
@@ -128,7 +128,7 @@ describe GraphList do
           g: [:g, :e, :c, :f, :d, :a, :b]
         }.each do |start, traversal|
           it "yields the correct traversal starting from #{start}" do
-            graph.depth_first(start).should == traversal
+            expect(graph.depth_first(start)).to eq(traversal)
           end
         end
       end
@@ -169,7 +169,7 @@ describe GraphList do
             
             it "removes #{v1} from any succesor lists" do
               (data_keys - [v1]).each do |v2|
-                graph.successors(v2).should_not include(v1)
+                expect(graph.successors(v2)).not_to include(v1)
               end
             end
           end
@@ -180,12 +180,12 @@ describe GraphList do
               before(:each) { graph.delete_edge(v1, v2) }
             
               it "removes #{v2} from #{v1}'s successors" do
-                graph.successors(v1).should_not include(v2)
+                expect(graph.successors(v1)).not_to include(v2)
               end
               
               unless directed
                 it "removes #{v1} from #{v2}'s successors" do
-                  graph.successors(v2).should_not include(v1)
+                  expect(graph.successors(v2)).not_to include(v1)
                 end
               end
             end

@@ -1,4 +1,5 @@
-require './graph_list.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'graph_list'
 require 'rspec'
 
 describe GraphList do

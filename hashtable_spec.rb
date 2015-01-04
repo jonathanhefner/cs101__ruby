@@ -1,4 +1,5 @@
-require './hashtable.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'hashtable'
 require 'rspec'
 
 describe Hashtable do

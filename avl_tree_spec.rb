@@ -1,4 +1,5 @@
-require './avl_tree.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'avl_tree'
 require 'rspec'
 
 describe AvlTree do

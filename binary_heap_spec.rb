@@ -1,4 +1,5 @@
-require './binary_heap.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'binary_heap'
 require 'rspec'
 
 describe BinaryHeap do

@@ -1,4 +1,5 @@
-require './quicksort.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'quicksort'
 require 'rspec'
 
 describe Quicksort do

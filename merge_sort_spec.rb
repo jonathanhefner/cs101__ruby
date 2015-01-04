@@ -1,4 +1,5 @@
-require './merge_sort.rb'
+$:<< File.dirname(__FILE__) << "#{File.dirname(__FILE__)}/.."
+require 'merge_sort'
 require 'rspec'
 
 describe MergeSort do

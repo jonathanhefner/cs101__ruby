@@ -1,25 +1,13 @@
 # CS 101
 
-A review of fundamental data structures and algorithms, implemented in 
-Ruby.
+Algorithms and data structures, implemented in Ruby.
 
-
-## Prerequisites
-
-Install Ruby and [Bundler](http://bundler.io/):
-
-```bash
-sudo apt-get install ruby
-sudo gem install bundler
-```
+Also -- perhaps as interesting as the algorithms themselves --
+property-based unit tests which delineate algorithm invariants.  The
+tests are written such that they could be adapted to a
+[fuzzer](https://en.wikipedia.org/wiki/Fuzzing).
 
 
 ## Usage
 
-```bash
-cd /path/to/project
-
-bundle install
-
-bundle exec rspec spec --format documentation
-```
+Run `bundle exec rake test` to run the tests.

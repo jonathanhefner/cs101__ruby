@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rspec', '~> 3.1.0'
-gem 'rspec-its', '~> 1.1.0'
+gem "rake", "~> 12.0"
+gem "minitest", "~> 5.10"
